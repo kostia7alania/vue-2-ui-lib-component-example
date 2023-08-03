@@ -1,45 +1,97 @@
 <template>
   <div :class="$style.TabsSwiper">
     <!-- swiper -->
-    <div ref="sliderRef" :class="$style.swiper" class="swiper">
+    <div
+      ref="sliderRef"
+      :class="[
+        $style.swiper,
+        {
+          [$style.swiperHasNextArrow]: !isEnd,
+          [$style.swiperHasPrevArrow]: !isBeginning,
+        },
+      ]"
+      class="swiper"
+    >
       <!-- pass all props -->
       <VSwitch v-bind="$attrs" v-on="$listeners" in-swiper />
     </div>
 
     <div :class="$style.nav">
-      <VButton
-        ref="prev"
-        color="white"
-        size="xs"
-        round
-        :class="[
-          $style.navNext,
-          {
-            [$style.disabled]: isBeginning,
-          },
-        ]"
-        :disabled="isBeginning"
-        @click="slidePrev"
-      >
-        &lt;
-      </VButton>
+      <!------
+        MOBILE
+       ------->
+      <template v-if="isMobile">
+        <!-- next -->
+        <VSwitchTab
+          ref="next"
+          v-bind="$attrs"
+          :class="[
+            $style.navNext,
+            {
+              [$style.disabled]: isBeginning,
+            },
+          ]"
+          @click="slidePrev"
+        >
+          &lt;
+        </VSwitchTab>
 
-      <VButton
-        ref="next"
-        color="white"
-        size="xs"
-        round
-        :disabled="isEnd"
-        :class="[
-          $style.navNext,
-          {
-            [$style.disabled]: isEnd,
-          },
-        ]"
-        @click="slideNext"
-      >
-        &gt;
-      </VButton>
+        <!-- prev -->
+        <VSwitchTab
+          ref="prev"
+          v-bind="$attrs"
+          :class="[
+            $style.navNext,
+            {
+              [$style.disabled]: isEnd,
+            },
+          ]"
+          @click="slideNext"
+        >
+          &gt;
+        </VSwitchTab>
+      </template>
+
+      <!-----
+        DESKTOP
+       ------>
+      <template v-else>
+        <!-- prev -->
+        <VButton
+          ref="prev"
+          color="white"
+          size="xs"
+          round
+          :class="[
+            $style.navNext,
+            {
+              [$style.disabled]: isBeginning,
+            },
+          ]"
+          :disabled="isBeginning"
+          @click="slidePrev"
+        >
+          &lt;
+        </VButton>
+
+        <!-- next -->
+        <VButton
+          ref="next"
+          color="white"
+          size="xs"
+          round
+          :disabled="isEnd"
+          :class="[
+            $style.navNext,
+            {
+              [$style.disabled]: isEnd,
+            },
+          ]"
+          @click="slideNext"
+        >
+          &gt;
+        </VButton>
+      </template>
     </div>
   </div>
 </template>
@@ -48,15 +100,21 @@
 import Swiper from "swiper";
 import VSwitch from "./VSwitch.vue";
 import VButton from "@/components/v-button/VButton.vue";
+import VSwitchTab from "./VSwitchTab.vue";
 
 export default {
   name: "VSwitchSwiper",
   components: {
     VSwitch,
     VButton,
+    VSwitchTab,
   },
   // props: see in VSwitch
   inheritAttrs: false,
+  props: {
+    // TODO: use local util
+    isMobile: Boolean,
+  },
   data() {
     return {
       swiper: null,
@@ -98,11 +156,11 @@ export default {
         loop: 0,
         allowTouchMove: true,
         freeMode: true,
-        mousewheel: {
-          forceToAxis: true,
-          sensitivity: 4,
-          releaseOnEdges: true,
-        },
+        // mousewheel: {
+        //   forceToAxis: true,
+        //   sensitivity: 4,
+        //   releaseOnEdges: true,
+        // },
         navigation: {
           nextEl: this.$refs.next?.$el || this.$refs.next,
           prevEl: this.$refs.prev?.$el || this.$refs.prev,
@@ -116,6 +174,7 @@ export default {
 
 <style lang="scss" module>
 @import "@/assets/variables.scss";
+@import "@/assets/mixins.scss";
 
 .TabsSwiper {
   width: 100%;
@@ -127,6 +186,16 @@ export default {
 
     overflow: hidden;
     width: 100%;
+
+    @include respond-to(mobile) {
+      padding: 0;
+      // &.swiperHasNextArrow {
+      //   padding-right: 32px;
+      // }
+      // &.swiperHasPrevArrow {
+      //   padding-left: 32px;
+      // }
+    }
   }
 
   .nav {
@@ -142,6 +211,11 @@ export default {
     justify-content: space-between;
     height: 0;
 
+    @include respond-to(mobile) {
+      right: 4px;
+      left: 4px;
+    }
+
     .navPrev,
     .navNext {
       cursor: pointer;
@@ -151,6 +225,12 @@ export default {
       &.disabled {
         opacity: 0;
         cursor: not-allowed;
+      }
+
+      @include respond-to(mobile) {
+        padding: 0;
+        aspect-ratio: 1/1;
+        background-color: $r-base-wind; // hardcode
       }
     }
   }

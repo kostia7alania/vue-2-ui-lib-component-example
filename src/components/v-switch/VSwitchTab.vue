@@ -22,6 +22,7 @@
     ]"
     @click="$emit('click')"
   >
+    <slot />
     {{ label }}
   </button>
 </template>

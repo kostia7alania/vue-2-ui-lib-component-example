@@ -86,6 +86,39 @@
           </label>
         </div>
       </fieldset>
+
+      <!-- isMobile -->
+      <fieldset>
+        <legend>isMobile:</legend>
+
+        <div :class="$style.settingsItem">
+          <label @mouseover="isMobile = true">
+            <input
+              type="radio"
+              :value="true"
+              :checked="isMobile === true"
+              @change="isMobile = true"
+            />
+            true
+          </label>
+          <label @mouseover="isMobile = false">
+            <input
+              type="radio"
+              :value="false"
+              :checked="isMobile === false"
+              @change="isMobile = false"
+            />
+            false
+          </label>
+        </div>
+        <div v-if="isMobile">
+          screen width
+          <br />
+          must be
+          <br />
+          less 720px
+        </div>
+      </fieldset>
     </div>
 
     <!-- EXAMPLE 1 -->
@@ -114,6 +147,7 @@
         :purpose="purpose"
         :colored="colored"
         :disabled="disabled"
+        :isMobile="isMobile"
       />
     </div>
   </div>
@@ -166,6 +200,7 @@ export default {
       purpose: VSwitchDefaults.purpose,
       colored: VSwitchDefaults.colored,
       disabled: false,
+      isMobile: false,
     };
   },
   components: {
