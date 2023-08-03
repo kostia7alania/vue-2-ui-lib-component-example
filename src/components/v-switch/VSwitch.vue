@@ -8,6 +8,7 @@
         [$style.small]: size === VSwitchSizeMap.s,
         [$style.medium]: size === VSwitchSizeMap.m,
         [$style.large]: size === VSwitchSizeMap.l,
+        'swiper-wrapper': inSwiper,
       },
     ]"
   >

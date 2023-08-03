@@ -3,12 +3,7 @@
     <!-- swiper -->
     <div ref="sliderRef" :class="$style.swiper" class="swiper">
       <!-- pass all props -->
-      <VSwitch
-        v-bind="$attrs"
-        v-on="$listeners"
-        class="swiper-wrapper"
-        in-swiper
-      />
+      <VSwitch v-bind="$attrs" v-on="$listeners" in-swiper />
     </div>
 
     <div :class="$style.nav">
@@ -120,11 +115,16 @@ export default {
 </script>
 
 <style lang="scss" module>
+@import "@/assets/variables.scss";
+
 .TabsSwiper {
   width: 100%;
   position: relative;
 
   .swiper {
+    border-radius: 8px;
+    background-color: $r-base-wind;
+
     overflow: hidden;
     width: 100%;
   }
