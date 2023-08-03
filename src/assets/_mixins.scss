@@ -1,0 +1,213 @@
+@use "sass:math";
+
+$small: 720px;
+$s-tablet: 920px;
+$m-tablet: 1024px;
+$s-laptop: 1200px;
+$tablet: 1359px;
+$medium: 1440px;
+$large: 99999px;
+$iphone_5: 320px;
+$iphone_se: 375px;
+$moto_g4: 370px;
+
+// Media queries
+
+@mixin respond-to($media) {
+    @if $media == tablet-desktop {
+        @media only screen and (min-width: $small) and (max-width: $large) {
+            @content;
+        }
+    }
+
+    @if $media == desktop {
+        @media only screen and (min-width: $tablet) and (max-width: $large) {
+            @content;
+        }
+    }
+
+    @if $media == mobile {
+        @media only screen and (max-width: $small - 1px) {
+            @content;
+        }
+    } @else if $media == medium {
+        @media only screen and (max-width: $medium - 1px) {
+            @content;
+        }
+    } @else if $media == tablet {
+        @media only screen and (max-width: $tablet - 1px) {
+            @content;
+        }
+    } @else if $media == s_laptop {
+        @media only screen and (max-width: $s-laptop - 1px) {
+            @content;
+        }
+    } @else if $media == m_tablet {
+        @media only screen and (max-width: $m-tablet - 1px) {
+            @content;
+        }
+    } @else if $media == s_tablet {
+        @media only screen and (max-width: $s-tablet - 1px) {
+            @content;
+        }
+    } @else if $media == s_tablet-only {
+        @media only screen and (min-width: $small + 1px) and (max-width: $s-tablet - 1px) {
+            @content;
+        }
+    } @else if $media == tablet-only {
+        @media only screen and (min-width: $s-tablet + 1px) and (max-width: $tablet - 1px) {
+            @content;
+        }
+    } @else if $media == moto_g4 {
+        @media only screen and (max-width: $moto_g4) {
+            @content;
+        }
+    } @else if $media == iphone_5 {
+        @media only screen and (max-width: $iphone-5) {
+            @content;
+        }
+    } @else if $media == iphone_se {
+        @media only screen and (max-width: $iphone_se) {
+            @content;
+        }
+    }
+
+    @if $media == desk_height {
+        @media only screen and (min-height: 760px) and (max-height: 800px) {
+            @content;
+        }
+    }
+
+    @if $media == desk_max-height_800 {
+        @media only screen and (min-width: $tablet) and (max-width: $large) and (max-height: 800px) {
+            @content;
+        }
+    }
+}
+
+// Add font-family
+
+@mixin font($alias, $name, $weight) {
+    @font-face {
+        font-family: $alias;
+        src: url("fonts/" + $name + ".woff") format("woff");
+        font-weight: $weight;
+        font-style: normal;
+        font-display: swap;
+    }
+}
+
+// Animation
+
+@mixin showToTop($timing, $delay) {
+    &._hidden {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    &._visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity #{$timing}s $apple-cubic #{$delay}s, transform #{$timing}s $apple-cubic #{$delay}s;
+    }
+}
+
+// showToTopSet
+
+@mixin showToTopCycle($timing, $delay) {
+    @each $child in $childrenSet {
+
+        &:nth-child(#{$child}) {
+            @include showToTop($timing, $delay * $child);
+        }
+    }
+}
+
+@mixin aspect-ratio($width, $height) {
+    &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: math.div($height, $width) * 100%;
+    }
+
+    & > .aspect-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@mixin hover() {
+    @media (hover: hover) and (pointer: fine) {
+        @content;
+    }
+}
+
+@mixin customScroll() {
+    .ps {
+        &__rail-y {
+
+            /* stylelint-disable-next-line */
+            width: 4px !important;
+            border-radius: 2px;
+        }
+
+        &__thumb-y {
+            right: 0;
+
+            /* stylelint-disable-next-line */
+            width: 4px !important;
+            background-color: $r-base-300;
+            border-radius: 2px;
+            opacity: 1;
+
+            &:hover {
+                background-color: $r-base-300;
+                opacity: 1;
+
+                /* stylelint-disable-next-line */
+                width: 4px !important;
+            }
+        }
+    }
+
+    .ps--active-y > .ps__rail-y {
+        background-color: #f4f6fb;
+        opacity: 1;
+    }
+}
+
+@mixin customScrollX() {
+    .ps {
+        &__rail-x {
+
+            /* stylelint-disable-next-line */
+            height: 4px !important;
+            border-radius: 2px;
+        }
+
+        &__thumb-x {
+            right: 0;
+            bottom: 1px;
+
+            /* stylelint-disable-next-line */
+            height: 4px !important;
+            background-color: $r-base-400;
+            border-radius: 2px;
+            opacity: 1;
+
+            &:hover {
+                background-color: $r-base-400;
+                opacity: 1;
+            }
+        }
+    }
+
+    .ps--active-x > .ps__rail-x {
+        background-color: $r-base-wind;
+        opacity: 1;
+    }
+}

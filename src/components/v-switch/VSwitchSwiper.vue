@@ -6,29 +6,43 @@
       <VSwitch
         v-bind="$attrs"
         v-on="$listeners"
-        in-swiper
         class="swiper-wrapper"
+        in-swiper
       />
+    </div>
 
-      <div :class="$style.nav">
-        <button
-          ref="prev"
-          :class="$style.navPrev"
-          :disabled="isBeginning"
-          @click="slidePrev"
-        >
-          &lt;
-        </button>
+    <div :class="$style.nav">
+      <VButton
+        ref="prev"
+        color="white"
+        round
+        :class="[
+          $style.navNext,
+          {
+            [$style.disabled]: isBeginning,
+          },
+        ]"
+        :disabled="isBeginning"
+        @click="slidePrev"
+      >
+        &lt;
+      </VButton>
 
-        <button
-          ref="next"
-          :class="$style.navNext"
-          :disabled="isEnd"
-          @click="slideNext"
-        >
-          &gt;
-        </button>
-      </div>
+      <VButton
+        ref="next"
+        color="white"
+        round
+        :disabled="isEnd"
+        :class="[
+          $style.navNext,
+          {
+            [$style.disabled]: isEnd,
+          },
+        ]"
+        @click="slideNext"
+      >
+        &gt;
+      </VButton>
     </div>
   </div>
 </template>
@@ -36,11 +50,13 @@
 <script>
 import Swiper from "swiper";
 import VSwitch from "./VSwitch.vue";
+import VButton from "@/components/v-button/VButton.vue";
 
 export default {
   name: "VSwitchSwiper",
   components: {
     VSwitch,
+    VButton,
   },
   // props: see in VSwitch
   inheritAttrs: false,
@@ -57,7 +73,6 @@ export default {
   },
   computed: {
     isEnd() {
-      window.t = this;
       return this.swiper?.isEnd;
     },
     isBeginning() {
@@ -65,11 +80,7 @@ export default {
     },
   },
   mounted() {
-    this.$nextTick(() => {
-      setTimeout(() => {
-        this.initSlider();
-      }, 1111);
-    });
+    this.initSlider();
   },
 
   methods: {
@@ -108,48 +119,36 @@ export default {
 
 <style lang="scss" module>
 .TabsSwiper {
-  border: 1px solid green;
-  display: flex;
   width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+
   .swiper {
-    position: relative;
-    // display: inline-block;
+    overflow: hidden;
     width: 100%;
-    .nav {
-      position: absolute;
-      top: 50%;
+  }
 
-      right: 10px;
-      left: 10px;
+  .nav {
+    position: absolute;
+    top: 50%;
 
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 0;
+    right: -16px;
+    left: -16px;
 
-      .navPrev,
-      .navNext {
-        width: 24px;
-        height: 24px;
-        border: none;
-        border-radius: 50%;
-        box-shadow: none;
-        background: rgba(40, 45, 60, 0.4);
-        color: "blue";
-        backdrop-filter: blur(8px);
-        appearance: none;
-        cursor: pointer;
-        transition: 0.3s ease;
-        user-select: none;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 0;
 
-        &:disabled {
-          opacity: 0;
-          cursor: not-allowed;
-        }
+    .navPrev,
+    .navNext {
+      cursor: pointer;
+      transition: 0.3s ease;
+      user-select: none;
+
+      &.disabled {
+        opacity: 0;
+        cursor: not-allowed;
       }
     }
   }

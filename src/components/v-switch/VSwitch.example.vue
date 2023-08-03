@@ -106,15 +106,16 @@
 
     <h1>VSwitchSwiper</h1>
 
-    <VSwitchSwiper
-      v-model="model"
-      :class="$style.VSwitchScroll"
-      :items="items"
-      :size="size"
-      :purpose="purpose"
-      :colored="colored"
-      :disabled="disabled"
-    />
+    <div :class="$style.VSwitchSwipe">
+      <VSwitchSwiper
+        v-model="model"
+        :items="items"
+        :size="size"
+        :purpose="purpose"
+        :colored="colored"
+        :disabled="disabled"
+      />
+    </div>
   </div>
 </template>
 
@@ -194,9 +195,17 @@ export default {
   }
 
   .VSwitchScroll {
-    overflow: hidden;
+    overflow: auto;
     padding: 10px;
     width: 100%;
+  }
+
+  .VSwitchSwipe {
+    padding: 64px;
+    background-color: #bbbfff;
+    border-radius: 10px;
+    max-width: 777px;
+    margin: auto;
   }
 }
 </style>

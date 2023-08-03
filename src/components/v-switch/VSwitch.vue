@@ -4,6 +4,10 @@
       $style.VSwitch,
       {
         [$style.colored]: colored,
+        // size
+        [$style.small]: size === VSwitchSizeMap.s,
+        [$style.medium]: size === VSwitchSizeMap.m,
+        [$style.large]: size === VSwitchSizeMap.l,
       },
     ]"
   >
@@ -61,6 +65,11 @@ export default {
       validator: (val) => val in VSwitchColoredMap,
     },
   },
+  data() {
+    return {
+      VSwitchSizeMap,
+    };
+  },
   components: {
     VSwitchTab,
   },
@@ -73,11 +82,26 @@ export default {
 
 .VSwitch {
   display: inline-flex;
+  align-items: center;
   gap: 4px;
   border-radius: 8px;
   background-color: $r-base-wind;
   &.colored {
     background-color: $r-base-cloud;
+  }
+
+  // size
+  &.small {
+    height: 36px;
+    padding: 4px;
+  }
+  &.medium {
+    height: 38px;
+    padding: 4px;
+  }
+  &.large {
+    height: 48px;
+    padding: 4px;
   }
 }
 </style>
