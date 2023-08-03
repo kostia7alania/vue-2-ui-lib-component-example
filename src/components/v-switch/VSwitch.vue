@@ -83,6 +83,8 @@ export default {
 .VSwitch {
   display: inline-flex;
   align-items: center;
+  padding-left: 4px;
+  padding-right: 4px;
   gap: 4px;
   border-radius: 8px;
   background-color: $r-base-wind;
@@ -93,15 +95,12 @@ export default {
   // size
   &.small {
     height: 36px;
-    padding: 4px;
   }
   &.medium {
     height: 38px;
-    padding: 4px;
   }
   &.large {
     height: 48px;
-    padding: 4px;
   }
 }
 </style>

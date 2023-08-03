@@ -15,6 +15,7 @@
       <VButton
         ref="prev"
         color="white"
+        size="xs"
         round
         :class="[
           $style.navNext,
@@ -31,6 +32,7 @@
       <VButton
         ref="next"
         color="white"
+        size="xs"
         round
         :disabled="isEnd"
         :class="[
