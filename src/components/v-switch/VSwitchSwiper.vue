@@ -42,6 +42,7 @@ export default {
   components: {
     VSwitch,
   },
+  // props: see in VSwitch
   inheritAttrs: false,
   data() {
     return {
