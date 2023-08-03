@@ -3,10 +3,13 @@
     begin:{{ isBeginning }} | end: {{ isEnd }}
     <!-- swiper -->
     <div ref="sliderRef" :class="$style.swiper" class="swiper">
-      <div class="swiper-wrapper">
-        <!-- pass all props -->
-        <VSwitch v-bind="$attrs" v-on="$listeners" in-swiper />
-      </div>
+      <!-- pass all props -->
+      <VSwitch
+        v-bind="$attrs"
+        v-on="$listeners"
+        in-swiper
+        class="swiper-wrapper"
+      />
 
       <div :class="$style.nav">
         <button

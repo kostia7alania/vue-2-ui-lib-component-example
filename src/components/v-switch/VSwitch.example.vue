@@ -194,7 +194,7 @@ export default {
   }
 
   .VSwitchScroll {
-    overflow: auto;
+    overflow: hidden;
     padding: 10px;
     width: 100%;
   }
