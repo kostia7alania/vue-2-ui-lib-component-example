@@ -94,53 +94,53 @@ export default {
     height: 40px;
     padding: 0 20px;
   }
+  &:not(:disabled) {
+    &:not(.selected) {
+      cursor: pointer;
+    }
 
-  &:not(.selected) {
-    cursor: pointer;
-  }
+    // purpose
+    &.primary:not(:disabled) {
+      &:hover:not(.selected) {
+        background-color: $r-base-cloud;
+        &.colored {
+          background-color: $r-base-wind;
+        }
+      }
 
-  // purpose
-  &.primary {
-    &:hover:not(:disabled):not(.selected) {
-      background-color: $r-base-cloud;
-      &.colored {
-        background-color: $r-base-wind;
+      &.selected {
+        background-color: $r-primary-sky;
+        color: $r-base-cloud;
       }
     }
 
-    &.selected {
-      background-color: $r-primary-sky;
-      color: $r-base-cloud;
-    }
-  }
-
-  &.secondary {
-    color: $r-base-500;
-
-    &:hover:not(:disabled):not(.selected) {
-      background-color: $base-cloud;
-    }
-
-    &.colored {
+    &.secondary:not(:disabled) {
       color: $r-base-500;
-      background-color: transparent;
 
-      &:hover:not(:disabled):not(.selected) {
-        background-color: $r-base-wind;
+      &:hover:not(.selected) {
+        background-color: $base-cloud;
       }
-    }
-
-    &.selected {
-      color: $r-primary-sky;
-      background-color: $r-base-cloud;
 
       &.colored {
-        background-color: $r-base-wind;
+        color: $r-base-500;
+        background-color: transparent;
+
+        &:hover:not(.selected) {
+          background-color: $r-base-wind;
+        }
+      }
+
+      &.selected {
         color: $r-primary-sky;
+        background-color: $r-base-cloud;
+
+        &.colored {
+          background-color: $r-base-wind;
+          color: $r-primary-sky;
+        }
       }
     }
   }
-
   &.disabled {
     color: $r-base-400;
   }
