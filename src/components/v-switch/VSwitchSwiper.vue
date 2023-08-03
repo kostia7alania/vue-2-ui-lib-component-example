@@ -11,6 +11,21 @@
         MOBILE
        ------->
       <template v-if="isMobile">
+        <!-- prev -->
+        <VSwitchTab
+          ref="prev"
+          v-bind="$attrs"
+          :class="[
+            $style.navPrev,
+            {
+              [$style.disabled]: isEnd,
+            },
+          ]"
+          @click="slideNext"
+        >
+          &gt;
+        </VSwitchTab>
+
         <!-- next -->
         <VSwitchTab
           ref="next"
@@ -25,21 +40,6 @@
         >
           &lt;
         </VSwitchTab>
-
-        <!-- prev -->
-        <VSwitchTab
-          ref="prev"
-          v-bind="$attrs"
-          :class="[
-            $style.navNext,
-            {
-              [$style.disabled]: isEnd,
-            },
-          ]"
-          @click="slideNext"
-        >
-          &gt;
-        </VSwitchTab>
       </template>
 
       <!-----
@@ -53,7 +53,7 @@
           size="xs"
           round
           :class="[
-            $style.navNext,
+            $style.navPrev,
             {
               [$style.disabled]: isBeginning,
             },
@@ -218,10 +218,10 @@ export default {
       }
     }
     .navPrev.disabled {
-      transform: translateX(-100px);
+      transform: scale(0);
     }
     .navNext.disabled {
-      transform: translateX(100px);
+      transform: scale(0);
     }
   }
 }
