@@ -10,7 +10,7 @@
           :key="sizeItem.value"
           :class="$style.settingsItem"
         >
-          <label>
+          <label @mouseover="size = sizeItem.value">
             <input
               type="radio"
               :name="sizeItem.value"
@@ -32,7 +32,7 @@
           :key="purposeItem.value"
           :class="$style.settingsItem"
         >
-          <label>
+          <label @mouseover="purpose = purposeItem.value">
             <input
               type="radio"
               :name="purposeItem.value"
@@ -54,7 +54,7 @@
           :key="coloredItem.value"
           :class="$style.settingsItem"
         >
-          <label>
+          <label @mouseover="colored = coloredItem.value">
             <input
               type="radio"
               :value="coloredItem.value"
@@ -75,7 +75,7 @@
           :key="item.value"
           :class="$style.settingsItem"
         >
-          <label>
+          <label @mouseover="disabled = item.value">
             <input
               type="radio"
               :value="item.value"
