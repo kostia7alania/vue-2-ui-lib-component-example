@@ -9,6 +9,9 @@
   >
     <VSwitchTab
       v-for="(item, index) in items"
+      :class="{
+        'swiper-slide': inSwiper,
+      }"
       :selected="value === item.value"
       :label="item.label"
       :key="index + String(item.label)"
@@ -40,7 +43,7 @@ export default {
       default: undefined,
     },
     items: { type: Array, default: () => [] },
-
+    inSwiper: { type: Boolean, default: false },
     // props from figma
     purpose: {
       type: String,

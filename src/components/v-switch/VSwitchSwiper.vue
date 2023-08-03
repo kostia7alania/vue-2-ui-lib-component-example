@@ -2,10 +2,10 @@
   <div :class="$style.TabsSwiper">
     begin:{{ isBeginning }} | end: {{ isEnd }}
     <!-- swiper -->
-    <div ref="sliderRef" :class="$style.swiper">
-      <div>
+    <div ref="sliderRef" :class="$style.swiper" class="swiper">
+      <div class="swiper-wrapper">
         <!-- pass all props -->
-        <VSwitch v-bind="$attrs" v-on="$listeners" class="swiper-slide" />
+        <VSwitch v-bind="$attrs" v-on="$listeners" in-swiper />
       </div>
 
       <div :class="$style.nav">
@@ -78,7 +78,7 @@ export default {
     },
     initSlider() {
       this.swiper = new Swiper(this.$refs.sliderRef, {
-        slidesPerView: 1,
+        slidesPerView: "auto",
         speed: 700,
         // centeredSlides: false,
         spaceBetween: 4,
