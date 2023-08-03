@@ -1,6 +1,5 @@
 <template>
   <div :class="$style.TabsSwiper">
-    begin:{{ isBeginning }} | end: {{ isEnd }}
     <!-- swiper -->
     <div ref="sliderRef" :class="$style.swiper" class="swiper">
       <!-- pass all props -->
@@ -81,13 +80,20 @@ export default {
     },
     initSlider() {
       this.swiper = new Swiper(this.$refs.sliderRef, {
+        observer: true,
+        observeParents: true,
         slidesPerView: "auto",
-        speed: 700,
+        speed: 1000,
         // centeredSlides: false,
         spaceBetween: 4,
         loop: 0,
         allowTouchMove: true,
         freeMode: true,
+        mousewheel: {
+          forceToAxis: true,
+          sensitivity: 4,
+          releaseOnEdges: true,
+        },
         navigation: {
           nextEl: this.$refs.next?.$el || this.$refs.next,
           prevEl: this.$refs.prev?.$el || this.$refs.prev,

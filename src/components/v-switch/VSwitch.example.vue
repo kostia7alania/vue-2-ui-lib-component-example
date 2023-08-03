@@ -128,7 +128,7 @@ import {
   VSwitchDefaults,
 } from "./VSwitch.types.js";
 
-const items = Array(100)
+const items = Array(33)
   .fill()
   .map((_, value) => ({ label: `Test ${value}`, value }));
 
