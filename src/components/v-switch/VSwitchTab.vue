@@ -80,7 +80,6 @@ export default {
 .VSwitchTab {
   border-radius: 6px;
   font-weight: 500;
-  cursor: pointer;
   transition: 0.2s ease;
   // size
   &.small {
@@ -94,6 +93,10 @@ export default {
   &.large {
     height: 40px;
     padding: 0 20px;
+  }
+
+  &:not(.selected) {
+    cursor: pointer;
   }
 
   // purpose
@@ -112,17 +115,29 @@ export default {
   }
 
   &.secondary {
+    color: $r-base-500;
+
     &:hover:not(:disabled):not(.selected) {
       background-color: $base-cloud;
+    }
+
+    &.colored {
+      color: $r-base-500;
+      background-color: transparent;
+
+      &:hover:not(:disabled):not(.selected) {
+        background-color: $r-base-wind;
+      }
     }
 
     &.selected {
       color: $r-primary-sky;
       background-color: $r-base-cloud;
-    }
 
-    &.selected {
-      background-color: $r-base-wind;
+      &.colored {
+        background-color: $r-base-wind;
+        color: $r-primary-sky;
+      }
     }
   }
 

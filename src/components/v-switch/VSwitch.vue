@@ -14,6 +14,7 @@
       :key="index + String(item.label)"
       :size="size"
       :purpose="purpose"
+      :colored="colored"
       :disabled="disabled"
       @click="$emit('input', item.value)"
     />
@@ -71,8 +72,9 @@ export default {
   display: inline-flex;
   gap: 4px;
   border-radius: 8px;
+  background-color: $r-base-wind;
   &.colored {
-    background-color: $r-base-wind;
+    background-color: $r-base-cloud;
   }
 }
 </style>

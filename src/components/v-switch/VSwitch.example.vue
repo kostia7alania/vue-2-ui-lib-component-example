@@ -89,6 +89,7 @@
     </div>
 
     <!-- EXAMPLE -->
+    <h1>VSwitch</h1>
     <VSwitch
       v-model="model"
       :items="items"
