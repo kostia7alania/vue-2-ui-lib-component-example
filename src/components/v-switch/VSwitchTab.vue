@@ -80,7 +80,9 @@ export default {
 .VSwitchTab {
   border-radius: 6px;
   font-weight: 500;
+  white-space: nowrap;
   transition: 0.2s ease;
+
   // size
   &.small {
     height: 28px;

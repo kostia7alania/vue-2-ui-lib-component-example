@@ -3,14 +3,9 @@
     begin:{{ isBeginning }} | end: {{ isEnd }}
     <!-- swiper -->
     <div ref="sliderRef" :class="$style.swiper">
-      <div :class="$style.wrapper" class="swiper-wrapper">
-        <div
-          v-for="(image, index) in gallery"
-          :key="index"
-          class="swiper-slide"
-        >
-          {{ image }}
-        </div>
+      <div>
+        <!-- pass all props -->
+        <VSwitch v-bind="$attrs" v-on="$listeners" class="swiper-slide" />
       </div>
 
       <div :class="$style.nav">
@@ -38,23 +33,16 @@
 
 <script>
 import Swiper from "swiper";
-
-const gallery = [
-  "Все",
-  "Самолет",
-  "Семейная",
-  "Военная",
-  "разззззз",
-  "двааааааааааа",
-  "триииииииии",
-];
+import VSwitch from "./VSwitch.vue";
 
 export default {
-  name: "AboutSlider",
-
+  name: "VSwitchSwiper",
+  components: {
+    VSwitch,
+  },
+  inheritAttrs: false,
   data() {
     return {
-      gallery,
       swiper: null,
     };
   },
@@ -77,7 +65,7 @@ export default {
     this.$nextTick(() => {
       setTimeout(() => {
         this.initSlider();
-      }, 111);
+      }, 1111);
     });
   },
 
@@ -90,12 +78,13 @@ export default {
     },
     initSlider() {
       this.swiper = new Swiper(this.$refs.sliderRef, {
-        slidesPerView: "auto",
+        slidesPerView: 1,
         speed: 700,
         // centeredSlides: false,
         spaceBetween: 4,
-        loop: false,
+        loop: 0,
         allowTouchMove: true,
+        freeMode: true,
         navigation: {
           nextEl: this.$refs.next?.$el || this.$refs.next,
           prevEl: this.$refs.prev?.$el || this.$refs.prev,
@@ -109,26 +98,16 @@ export default {
 
 <style lang="scss" module>
 .TabsSwiper {
-  max-width: 300px;
   border: 1px solid green;
-  overflow: hidden;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto;
-  // padding: 0 10px;
-
   .swiper {
     position: relative;
-    display: inline-block;
+    // display: inline-block;
     width: 100%;
-    .wrapper {
-      display: inline-flex;
-      gap: 24px;
-      width: 100%;
-      padding-right: 500px;
-    }
     .nav {
       position: absolute;
       top: 50%;

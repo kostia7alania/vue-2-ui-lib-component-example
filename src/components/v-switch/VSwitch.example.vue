@@ -88,10 +88,27 @@
       </fieldset>
     </div>
 
-    <!-- EXAMPLE -->
+    <!-- EXAMPLE 1 -->
+
     <h1>VSwitch</h1>
+
     <VSwitch
       v-model="model"
+      :class="$style.VSwitchScroll"
+      :items="items"
+      :size="size"
+      :purpose="purpose"
+      :colored="colored"
+      :disabled="disabled"
+    />
+
+    <!-- EXAMPLE 2 -->
+
+    <h1>VSwitchSwiper</h1>
+
+    <VSwitchSwiper
+      v-model="model"
+      :class="$style.VSwitchScroll"
       :items="items"
       :size="size"
       :purpose="purpose"
@@ -103,6 +120,7 @@
 
 <script>
 import VSwitch from "./VSwitch.vue";
+import VSwitchSwiper from "./VSwitchSwipper.vue";
 import {
   VSwitchPurposeMap,
   VSwitchSizeMap,
@@ -110,15 +128,9 @@ import {
   VSwitchDefaults,
 } from "./VSwitch.types.js";
 
-const items = [
-  { label: "test 1" },
-  { label: "test 2" },
-  { label: "test 3" },
-  { label: "test 4" },
-  { label: "test 5" },
-  { label: "test 6" },
-  { label: "test 7" },
-].map((e, value) => ({ ...e, value }));
+const items = Array(100)
+  .fill()
+  .map((_, value) => ({ label: `Test ${value}`, value }));
 
 const sizes = [
   { label: "Small", value: VSwitchSizeMap.s },
@@ -157,6 +169,7 @@ export default {
   },
   components: {
     VSwitch,
+    VSwitchSwiper,
   },
 };
 </script>
@@ -178,6 +191,12 @@ export default {
         cursor: pointer;
       }
     }
+  }
+
+  .VSwitchScroll {
+    overflow: auto;
+    padding: 10px;
+    width: 100%;
   }
 }
 </style>
