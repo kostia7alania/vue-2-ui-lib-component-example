@@ -1,0 +1,155 @@
+/* Fonts */
+
+@use "sass:math";
+
+$pfb: "PFBeauSansPro";
+$ttn: "CoFoSans";
+$tt-norms: "TT-Norms";
+
+/* Sizes */
+$header-h: 130px;
+$header-top: 40px;
+$m-header-h: 72px;
+$tap-bar-h: 70px;
+$t-header-h: 88px;
+$uk-header-h: 140px;
+$t-uk-header-h: 116px;
+$m-uk-header-h: 56px;
+$m-padding-x: 20px;
+$m-padding-y: 50px;
+$m-fz: 24px;
+$exp-notice-h: 52px;
+$tabletWidth: math.div(100vw, 1024);
+
+/* Grids */
+
+$col: 110px;
+$container: $col * 12;
+$container_m: calc(100vw - #{$m-padding-x * 2});
+
+$tabletCol: 118 * $tabletWidth;
+$tabletContainer: 118 * 8 * $tabletWidth;
+$tablet-padding-x: calc((100vw - #{$tabletContainer}) / 2);
+
+/* Colors UI Kit */
+
+$base-900: #282d3c;
+$base-600: #2a2a30;
+$base-500: #444449;
+$base-400: #878d93;
+$base-300: #d7d9db;
+$base-200: #f5f5f5;
+$base-100: #f9f9fa;
+$base-wind: #f4f6fb;
+$base-cloud: #fff;
+
+$primary-600: #3395fc;
+$primary-hover-text: #66b0fd;
+$primary-500_1: #007bfb;
+$primary-500_2: #0066b3;
+$primary-500: #0551a1;
+$primary-400: #1c6ec5;
+$primary-300: #237bd8;
+$primary-200: #ebf1f8;
+$primary-100: #f6faff;
+
+$primary-red: #ed4c4f;
+$primary-green: #1a9f29;
+$primary-beige: #fff3e1;
+
+/* Colors Hover-Active */
+$blue-active: $primary-300;
+
+// Если ссылка черная - #007bfb если синяя #237bd8, у синих кнопок - #3397ff ¯\_(ツ)_/¯
+$blue-hover: #007bfb;
+$blue-hover-dark: #237bd8;
+$blue-hover-light: #3397ff;
+
+/* More Colors  */
+$business-text: #9d9d9d;
+$business-bg: #20232d;
+$blue-light: #6da4dd;
+$blue-lighten: #d6e2fa;
+
+$yellow: #fed330;
+$red-light: #ef4a4a;
+$red-light-hover: #f27070;
+$red-bright: #fe3022;
+$red: #ed4c4f;
+
+$green: #2daa32;
+$green-valid: #38a563;
+$green-s: #1a9f29;
+$green-light: #5cc867;
+$green-light-1: #ceefd1;
+$purple: #ab52c6;
+$blue-middle: #0776ed;
+$blue-light-bg: #f0f8ff;
+$samoletplus-blue: #3579f5;
+
+/* Redesign Colors UI Kit */
+
+/* Primary */
+$r-primary-900: #111d3b;
+$r-primary-800: #003164;
+$r-primary-700: #004a97;
+$r-primary-600: #0469d2;
+$r-primary-sky: #007bfb;
+$r-primary-400: #3395fc;
+$r-primary-300: #66b0fd;
+$r-primary-200: #99cafd;
+$r-primary-100: #cce5fe;
+$r-primary-0: #ebf4ff;
+
+/* Base */
+$r-base-stone: #282d3c;
+$r-base-800: #414961;
+$r-base-700: #515b73;
+$r-base-600: #788095;
+$r-base-500: #8c94a8;
+$r-base-400: #bcc3d2;
+$r-base-300: #e2e7f3;
+$r-base-200: #ecf0f8;
+$r-base-wind: #f4f6fb;
+$r-base-cloud: #fff;
+
+/* Additional */
+$r-accept-garden: #5cc867;
+
+$r-error-fire: #ed584e;
+
+$r-option-dance: #fd770d;
+$r-option-ice: #70d0f4;
+$r-option-lime: #b6d20d;
+$r-option-flower: #4f08e8;
+$r-option-berrie: #e75ca3;
+$r-option-lima: #75b91f;
+$r-option-acai: #92278f;
+$r-option-sun: #f8cc4d;
+$r-option-drow: #2c73b4;
+$r-option-steel: #adacac;
+$r-option-yellow: #ffbe04;
+
+/* Easing */
+
+$easeIn: cubic-bezier(.785, .135, .15, .86);
+$ease: cubic-bezier(.25, .46, .45, .94);
+$bounce: cubic-bezier(.09, 1.16, .34, 1.37);
+$apple-cubic: cubic-bezier(.165, .84, .44, 1);
+
+/* Adds */
+
+$childrenSet: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+$z-index: 2147483647;
+
+@keyframes toTopAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

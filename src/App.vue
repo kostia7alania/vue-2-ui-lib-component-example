@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <VSwitchExample />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import VSwitchExample from "./components/v-switch/VSwitch.example.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    VSwitchExample,
   },
 };
 </script>
@@ -24,5 +24,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+button {
+  all: unset;
 }
 </style>
