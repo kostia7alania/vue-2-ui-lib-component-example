@@ -120,7 +120,7 @@
 
 <script>
 import VSwitch from "./VSwitch.vue";
-import VSwitchSwiper from "./VSwitchSwipper.vue";
+import VSwitchSwiper from "./VSwitchSwiper.vue";
 import {
   VSwitchPurposeMap,
   VSwitchSizeMap,
