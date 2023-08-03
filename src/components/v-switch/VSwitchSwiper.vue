@@ -1,17 +1,7 @@
 <template>
   <div :class="$style.TabsSwiper">
     <!-- swiper -->
-    <div
-      ref="sliderRef"
-      :class="[
-        $style.swiper,
-        {
-          [$style.swiperHasNextArrow]: !isEnd,
-          [$style.swiperHasPrevArrow]: !isBeginning,
-        },
-      ]"
-      class="swiper"
-    >
+    <div ref="sliderRef" :class="$style.swiper" class="swiper">
       <!-- pass all props -->
       <VSwitch v-bind="$attrs" v-on="$listeners" in-swiper />
     </div>
@@ -189,12 +179,6 @@ export default {
 
     @include respond-to(mobile) {
       padding: 0;
-      // &.swiperHasNextArrow {
-      //   padding-right: 32px;
-      // }
-      // &.swiperHasPrevArrow {
-      //   padding-left: 32px;
-      // }
     }
   }
 
@@ -232,6 +216,12 @@ export default {
         aspect-ratio: 1/1;
         background-color: $r-base-wind; // hardcode
       }
+    }
+    .navPrev.disabled {
+      transform: translateX(-100px);
+    }
+    .navNext.disabled {
+      transform: translateX(100px);
     }
   }
 }
