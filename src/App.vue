@@ -2,16 +2,19 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <VSwitchExample />
+    <VNumberAnimationExample />
   </div>
 </template>
 
 <script>
-import VSwitchExample from "./components/v-switch/VSwitch.example.vue";
+import VSwitchExample from "@/components/v-switch/VSwitch.example.vue";
+import VNumberAnimationExample from "@/components/v-number-animation/VNumberAnimation.example.vue";
 
 export default {
   name: "App",
   components: {
     VSwitchExample,
+    VNumberAnimationExample,
   },
 };
 </script>
