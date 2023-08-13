@@ -2,7 +2,10 @@
   <div>
     <div>valueFixedLength => {{ valueFixedLength }}</div>
     <div>displayValue => {{ displayValue }}</div>
-    <span v-if="value !== undefined">{{ filterMethod(displayValue) }}</span>
+    <!-- result: -->
+    <span v-if="value !== undefined && !Number.isNaN(+value)">{{
+      filterMethod(displayValue)
+    }}</span>
   </div>
 </template>
 
