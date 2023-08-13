@@ -1,5 +1,9 @@
 <template>
-  <span v-if="value !== undefined">{{ filter(displayValue) }}</span>
+  <div>
+    <div>valueFixedLength => {{ valueFixedLength }}</div>
+    <div>displayValue => {{ displayValue }}</div>
+    <span v-if="value !== undefined">{{ filterMethod(displayValue) }}</span>
+  </div>
 </template>
 
 <script>
@@ -8,8 +12,8 @@ import gsap from "gsap";
 export default {
   name: "VNumberAnimation",
   props: {
-    value: { type: Number, default: undefined },
-    filter: { type: Function, default: (value) => value },
+    value: { type: [Number, String], default: undefined },
+    filterMethod: { type: Function, default: (value) => value },
   },
 
   data() {
@@ -22,7 +26,18 @@ export default {
   watch: {
     value: "valueWatcher",
   },
+  computed: {
+    isValueInteger() {
+      return Number.isInteger(this.value);
+    },
+    valueFixedLength() {
+      if (this.isValueInteger || !this.value) {
+        return 0;
+      }
 
+      return String(this.value).split(".").slice(-1)?.[0].length;
+    },
+  },
   methods: {
     valueWatcher(newValue) {
       if (newValue === undefined) {
@@ -31,7 +46,11 @@ export default {
 
       gsap.to(this, {
         tweenValue: this.value,
-        onUpdate: () => (this.displayValue = Math.ceil(this.tweenValue)),
+        onUpdate: () => {
+          this.displayValue = Number(this.tweenValue).toFixed(
+            this.valueFixedLength
+          );
+        },
       });
     },
   },
