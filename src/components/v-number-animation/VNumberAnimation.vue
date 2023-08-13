@@ -47,8 +47,8 @@ export default {
       gsap.to(this, {
         tweenValue: this.value,
         onUpdate: () => {
-          this.displayValue = Number(this.tweenValue).toFixed(
-            this.valueFixedLength
+          this.displayValue = Number(
+            Number(this.tweenValue).toFixed(this.valueFixedLength)
           );
         },
       });
